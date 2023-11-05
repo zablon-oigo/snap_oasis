@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title%}
+New Conversation
+{% endblock %}
+{% block content %}
+<h2 class="">New Conversation</h2>
+<form action="{% url 'conversation:new' item.pk %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="send" class="">
+</form>
+{% endblock %}

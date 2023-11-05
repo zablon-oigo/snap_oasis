@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+Inbox Details
+{% endblock %}
+{% block content %}
+<h2 class="text-3xl text-center">Conversation Message</h2>
+
+{% for message in conversation.messages.all %}
+    <div class="p-6 mb-4 flex {% if message.created_by == request.user %}bg-blue-100{% else %}bg-gray-100{% endif %} rounded-xl">
+        <div class="">
+            <p class="mb-4">
+                <strong>{{message.created_by.username}}</strong> @ {{message.created_at}}
+                <p class="">{{message.content}}</p>
+            </p>
+        </div>
+    </div>
+    
+{%  endfor %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p }}
+    <input type="submit" value="Send">
+</form>
+{% endblock %}

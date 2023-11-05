@@ -1,0 +1,35 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %} | Market</title>
+    {% tailwind_css %}
+</head>
+<body class="bg-slate-100 font-mono">
+    <header class="px-6 py-6 sticky z-10 top-0">
+        <nav class=" flex items-center justify-between">
+            <div class="">
+                <a href="" class="text-3xl">Market</a>
+            </div>
+            <div class="space-x-4">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'conversation:inbox' %}" class="text-lg">inbox</a>
+                <a href="{% url 'users:logout' %}" class="text-lg text-gray-600 font-semibold hover:text-gray-800">Logout</a>
+                {% else %}
+                <a href="{% url 'users:login' %}" class="text-lg text-gray-600 font-semibold hover:text-gray-800">Login</a>
+                <a href="{% url 'users:register' %}" class="text-lg text-gray-600 font-semibold hover:text-gray-800">Sign Up</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+ 
+    <div class="container mx-auto">
+        {% block content %}
+            {% endblock %}
+        
+    </div>
+    <script src="https://kit.fontawesome.com/a0e99f8a3c.js" crossorigin="anonymous"></script>
+</body>
+</html>
