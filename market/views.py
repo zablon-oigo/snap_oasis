@@ -1,10 +1,14 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Product,Category
 from django.db.models import Q
+from django.templatetags.static import static
 def home(request):
-    items=Product.objects.filter(is_sold=False)
+    items=Product.objects.filter(is_sold=False)[:6]
     categories=Category.objects.all()
-    context={'categories':categories,'items':items}
+    img_menu_open = static('image/icon.svg')
+    img_close_menu = static('image/icon-close.svg')
+    bg_menu=static('image/bg.jfif')
+    context={'categories':categories,'items':items,'img_menu_open': img_menu_open, 'img_close_menu': img_close_menu,'bg_menu':bg_menu}
     return render(request,'market/index.html',context)
 
 def product_detail(request,item,year,month,day):

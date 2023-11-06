@@ -4,10 +4,22 @@ Home
 {% endblock %}
 {% block content %}
 <div class="conatiner mx-auto">
-    
-    <div class="px-6 py-6">
+    {% load static %}
+    <section class="px-6 relative text-white"id="hero">
+       <img src="{% static 'image/bg.jfif' %}" alt="" class="h-96 object-cover w-full">
+       <div class="absolute top-0 right-0 left-0  bg-black bg-opacity-60 h-full">
+        <div class="absolute top-10 left-2 w-full">
+            <h2 class="uppercase text-center md:text-8xl text-6xl font-extrabold mb-4">Always be Original</h2>
+            <p class="uppercase  text-center font-bold text-2xl mb-4">New arrivals are here</p>
+           <div class="flex items-center justify-center">
+              <button class="border-2  border-white px-6 py-3 hover:bg-teal-500 hover:text-whitefont-semibold hover:border-0">Shop Now</button>
+           </div>
+     </div>
+       </div>
+    </section>
+    <div class="px-6 py-4">
         <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-            <h2 class="mb-12 text-3xl bg-clip-text text-transparent bg-gradient-to-tr from-teal-800 to-cyan-200 text-center font-bold">Limited Edition caps</h2>
+            <h2 class="mb-12 text-3xl bg-clip-text text-transparent bg-gradient-to-tr from-teal-800 to-cyan-200 text-center font-bold">Limited Edition Collection</h2>
             <div class="grid md:grid-cols-3 grid-cols-1 gap-3">
                 {% for item in items %}
                 <div class="">
@@ -16,8 +28,8 @@ Home
                             <img src="{{item.image.url}}" alt="" class="rounded-t-xl">
                         </div>
                         <div class="p-6 bg-white rounded-b-xl">
-                            <h2 class="text-2xl">{{item.name}}</h2>
-                            <p class="text-gray-500">Price: {{item.price}}</p>
+                            <h2 class="text-2xl font-semibold text-teal-500">{{item.name}}</h2>
+                          
                         </div>
                     </a>
                 </div>
@@ -42,5 +54,9 @@ Home
             </div>
         </div>
 </div>
+
+<script>
+      
+</script>
 
 {% endblock %}

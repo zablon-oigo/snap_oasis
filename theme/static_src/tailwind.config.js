@@ -33,7 +33,7 @@ module.exports = {
         /* JS 1: Ignore any JavaScript in node_modules folder. */
         // '!../../**/node_modules',
         /* JS 2: Process all JavaScript files in the project. */
-        // '../../**/*.js',
+        '../../**/*.js',
 
         /**
          * Python: If you use Tailwind CSS classes in Python, uncomment the following line
@@ -42,7 +42,28 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            
+                 
+            keyframes: {
+                'open-menu': {
+                  '0%': { transform: 'scaleY(0)' },
+                  '80%': { transform: 'scaleY(1.2)' },
+                  '100%': { transform: 'scaleY(1)' },
+                },
+              },
+              animation: {
+                'open-menu': 'open-menu 0.5s ease-in-out forwards',
+              },
+            //   backgroundImage: {
+            //     'image': "url('{% static 'image/bg.jfif' %}')",
+                
+            //   },
+              
+
+
+
+        },
     },
     plugins: [
         /**
@@ -56,3 +77,4 @@ module.exports = {
         require('@tailwindcss/aspect-ratio'),
     ],
 }
+
