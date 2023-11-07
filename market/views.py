@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import Product,Category
 from django.db.models import Q
 from django.templatetags.static import static
+from django.contrib.auth.decorators import login_required
 def home(request):
     items=Product.objects.filter(is_sold=False)[:6]
     categories=Category.objects.all()
@@ -11,18 +12,20 @@ def home(request):
     context={'categories':categories,'items':items,'img_menu_open': img_menu_open, 'img_close_menu': img_close_menu,'bg_menu':bg_menu}
     return render(request,'market/index.html',context)
 
+@login_required
 def product_detail(request,item,year,month,day):
     item=get_object_or_404(Product, slug=item,
                            publish__year=year,
                            publish__month=month,
                            publish__day=day)
-    related_items=Product.objects.filter(category=item.category, is_sold=False).exclude(slug=item)[:3]
+    related_items=Product.objects.filter(category=item.category, is_sold=False).exclude(name=item)[:3]
     context={'item':item, 'related_items':related_items}
     return render(request,'market/detail.html',context)
 
+@login_required
 def search_items(request):
     query=request.GET.get('query','')
-    category_id=request.GET.get('category_id',0)
+    category_id=request.GET.get('category',0)
     categories=Category.objects.all()
     items=Product.objects.filter(is_sold=False)
 

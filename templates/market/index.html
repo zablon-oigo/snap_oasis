@@ -6,8 +6,8 @@ Home
 <div class="conatiner mx-auto">
     {% load static %}
     <section class="px-6 relative text-white"id="hero">
-       <img src="{% static 'image/bg.jfif' %}" alt="" class="h-96 object-cover w-full">
-       <div class="absolute top-0 right-0 left-0  bg-black bg-opacity-60 h-full">
+       <img src="{% static 'image/bg.jfif' %}" alt="" class="h-96 object-cover object-center w-full">
+       <div class="absolute top-0 right-5 left-5  bg-black bg-opacity-60 h-full">
         <div class="absolute top-10 left-2 w-full">
             <h2 class="uppercase text-center md:text-8xl text-6xl font-extrabold mb-4">Always be Original</h2>
             <p class="uppercase  text-center font-bold text-2xl mb-4">New arrivals are here</p>
@@ -17,17 +17,17 @@ Home
      </div>
        </div>
     </section>
-    <div class="px-6 py-4">
-        <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-            <h2 class="mb-12 text-3xl bg-clip-text text-transparent bg-gradient-to-tr from-teal-800 to-cyan-200 text-center font-bold">Limited Edition Collection</h2>
-            <div class="grid md:grid-cols-3 grid-cols-1 gap-3">
+    <div class="px-6 py-">
+        <div class="mt-6 ">
+            <h2 class="mb-12 text-2xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-tr from-teal-800 to-cyan-200 text-center font-bold">Limited Edition Collection</h2>
+            <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
                 {% for item in items %}
-                <div class="">
+                <div class="shadow-2xl">
                     <a href="{{item.get_absolute_url}}" class="">
                         <div class="">
-                            <img src="{{item.image.url}}" alt="" class="rounded-t-xl">
+                            <img src="{{item.image.url}}" alt="" class="rounded-t-xl w-full h-80 object-center">
                         </div>
-                        <div class="p-6 bg-white rounded-b-xl">
+                        <div class="p-6 bg-white rounded-b-2xl">
                             <h2 class="text-2xl font-semibold text-teal-500">{{item.name}}</h2>
                           
                         </div>

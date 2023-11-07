@@ -3,22 +3,27 @@
 Inbox
 {% endblock %}
 {% block content %}
-<h2 class="">Inbox</h2>
-{% for conversation in conversations %}
-<a href="{% url 'conversation:detail' conversation.id %}" class="">
-    <div class="p-6 flex bg-gray-100 rounded-xl">
-        <img src="{{conversation.item.image.url}}" alt="" class="w-20 rounded-xl">
-    <div class="">
-        {% for member in conversation.members.all %}
-           {% if member != request.user %}
-           <p class="mb-4">
-            <strong>{{member.username}}</strong> | {{conversation.modified_at}}
-           </p>
-           <p class="">{{ conversation.item.name}}</p>
-           {% endif %}
-        {% endfor %}
-    </div>
-    </div>
-</a>
-{% endfor%}
+<div class="max-w-6xl mx-auto bg-gray-200 p-6">
+<div class="max-w-xl bg-white p-4 rounded-2xl shadow-2xl mx-auto">
+    <h2 class="text-6xl text-gray-800 mb-2 font-bold">Inbox</h2>
+    {% for conversation in conversations %}
+    <a href="{% url 'conversation:detail' conversation.id %}" class="">
+        <div class="p-6 flex bg-gray-500 text-white mb-4 rounded-xl">
+            <img src="{{conversation.item.image.url}}" alt="" class="w-20 h-20 m-2 rounded-xl">
+        <div class="">
+            {% for member in conversation.members.all %}
+               {% if member != request.user %}
+               <p class="mb-4">
+                <strong class="text-red-200 text-lg">{{member.username |title}}</strong> | <span class="italic">{{conversation.modified_at}}</span>
+               </p>
+               <p class="text-xl font-semibold">{{ conversation.item.name}}</p>
+               {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+    </a>
+    {% endfor%}
+</div>
+</div>
+
 {% endblock %}

@@ -15,7 +15,7 @@
             </div>
             <div class="md:block hidden space-x-6">
                 <a href="" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Add Item</a>
-                <a href="" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Search</a>
+                <a href="{% url 'market:search' %}" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Search</a>
             </div>
             <button class="md:hidden block" id="Openbtn">
                 {% load static %}
@@ -28,8 +28,8 @@
 
                 <a href="{% url 'users:logout' %}" class="text-lg font-semibold text-white transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500 border px-6 py-3 rounded-lg bg-red-500">Logout</a>
                 {% else %}
-                <a href="{% url 'users:login' %}" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Login</a>
-                <a href="{% url 'users:register' %}" class="text-lg text-gray-600 font-semibold hover:text-gray-800">Sign Up</a>
+                <a href="{% url 'users:login' %}" class="text-lg font-semibold text-slate-700 px-6 py-3 rounded-xl border border-gray-800 hover:bg-white hover:border-0 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Login</a>
+                <a href="{% url 'users:register' %}" class="px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-700 text-white text-lg font-medium">Sign Up</a>
                 {% endif %}
             </div>
         </nav>
