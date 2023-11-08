@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<div class="container max-auto">
+    <div class="max-w-5xl  mx-auto rounded-xl bg-white shadow-2xl  my-10">
+        {% load  static %}
+       <div class="grid md:grid-cols-5 grid-col-1 place-content-center gap-4">
+        <div class="md:col-span-3 relative">
+            <img src="{% static 'image/login.jfif' %}" alt="" class="rounded-xl object-center">
+            <div class="bg-black absolute h-full bg-opacity-60 top-0 md:rounded-tl-xl md:rounded-bl-xl right-0 left-0">
+                <div class="absolute top-20 right-4 left-4">
+                    <p class="md:text-8xl text-6xl capitalize mb-4  text-white font-semibold ">Cap It with Confidence...
+                    <p class="md:text-4xl text-2xl font-bold text-teal-500">Creating Cap-tivating Moments</p>
+                </div>
+            </div>
+        </div>
+        
+       <div class="md:col-span-2 mx-4 my-4 relative">
+        <form action="{% url 'users:register'  %}" method="post">
+            <h2 class="text-6xl  text-gray-800  font-mono font-semibold md:text-start text-center">Sign Up</h2>
+            <hr class="border-3  border-gray-400 rounded md:w-32 w-1/2 mx-auto md:mx-0 my-2">
+           {{form.non_field_errors }}
+           <div class="mb-2">
+            <label for="" class="text-xl font-medium">Email</label>
+                 {{form.email}}
+        </div>
+           <div class="mb-2">
+            <label for="" class="text-xl font-medium">Username</label>
+                 {{form.username}}
+        </div>
+           <div class="mb-2">
+            <label for="" class="text-xl font-medium">Password</label>
+                 {{form.password1}}
+        </div>
+           <div class="mb-2">
+            <label for="" class="text-xl font-medium">Repeat Password</label>
+                 {{form.password2}}
+        </div>
+        {% if form.errors or form.non_field_errors %}
+        <div class="bg-red-500 text-xs text-white w-full rounded-xl p-4">
+            {% for field in form %}
+            <p class=" ">{{field.errors}}</p>
+            {% endfor %}
+        </div>
+        {{form.non_field_errors}}
+        {% endif %}
+        {% csrf_token %}
+             <input type="submit" value="Sign Up" class="px-6 py-4 rounded-xl w-full mb-4 bg-teal-500 hover:bg-teal-700 text-white text-lg">
+        </form>
+        <section class="my-20 md:my-0 h-full">
+            <div class="my-6 relative w-full">
+                <hr class="absolute  md:w-36 w-32 rounded-xl border-2 border-gray-500"><hr class="absolute right-2  w-36 border-2 rounded-xl border-gray-500">
+                <div class="w-full absolute bottom-0 -top-4 left-40">
+                  <span class="text-4xl font-semibold">OR</span>
+                  <div class="space-x-4 mt-4 -mx-12">
+                     
+                          <a href="" class="h-10 w-10 rounded-full border-2 text-center p-2 bg-gray-100"><i class="fa-brands fa-facebook text-blue-500  rounded-full"></i></a>
+                      
+                      <a href="" class="h-10 w-10 rounded-full border-2 text-center p-2 bg-gray-100"><i class="fa-brands fa-twitter text-blue-700"></i></a>
+                      <a href="" class="h-10 w-10 rounded-full border-2 text-center p-2 bg-gray-100"><i class="fa-brands fa-google-plus text-red-400"></i></a>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="my-10 absolute md:-bottom-2  bottom-20">
+                  <p class="md:text-xl text-md">Already have an account ? <span class="text-blue-500 underline"><a href="{% url 'users:login' %}">Log in</a></span></p>
+              </div>
+        </section>
+       </div>
+       </div>
+    </div>
+    <div class="max-w-md mx-auto rounded-xl bg-white shadow-2xl">
+        
+    </div>
+</div>
+{% endblock %}

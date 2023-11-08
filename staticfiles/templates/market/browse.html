@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+Browse
+{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto bg-gray-300 p-6 rounded-xl my-8 ">
+    <div class="pb-6 grid md:grid-cols-4 grid-cols-1 gap-4">
+        <div class="md:col-span-1 ">
+           <div class="my-4">
+            <form action="{% url 'market:search' %}" method="get">
+                <input type="text"  value="{{query}}" name="query" class="w-full py-4 border rounded-xl " placehiolder="">
+                <button class="mt-2 px-8 py-4 bg-teal-500 text-white w-full rounded-xl">search</button>
+    
+            </form>
+            <hr class="my-6 border border-gray-300">
+            <p class="font-bold text-2xl underline mb-2 text-center ">Categories</p>
+            <ul class="">
+                {% for category in categories %}
+                <li class="py-2 px-2 rounded-xl text-center {% if category.id == category_id %}bg-gray-400 text-white{% endif %}">
+                    <a href="{% url 'market:search' %}?query={{query}}&category={{category.id}}" class="text-lg font-semibold">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
+            <hr class="my-6 border border-gray-300">
+            <p class="font-semibold">
+                <a href="{% url 'market:search' %}" class="text-white px-6 py-4 rounded-xl bg-red-500 hover:bg-red-700">Clear Filters</a>
+            </p>
+           </div>
+            
+        </div>
+        <div class="md:col-span-3 col-span-1">
+            <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
+                {% for item in items %}
+                <div class="shadow-2xl">
+                    <a href="{{item.get_absolute_url}}" class="">
+                        <div class="">
+                            <img src="{{item.image.url}}" alt="" class="rounded-t-xl object-center object-cover h-64 w-full">
+                        </div>
+                        <div class="p-6 bg-white rounded-b-xl">
+                            <h2 class="text-2xl">{{item.name}}</h2>
+                            
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

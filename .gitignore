@@ -1,2 +1,9 @@
 .venv/
-
+conversation\__pycache__
+dashboard\__pycache__
+django_project\__pycache__
+market\__pycache__
+theme\__pycache__
+users\__pycache__
+staticfiles\theme\static_src\node_modules
+node_modules

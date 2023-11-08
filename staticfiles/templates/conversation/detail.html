@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+Inbox Details
+{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto p-6 bg-gray-200">
+  <div class="max-w-lg mx-auto bg-white p-6 shadow-2xl rounded-2xl">
+    <h2 class="md:text-4xl font-bold mb-2 text-3xl  text-center">Recent  Message</h2>
+
+    {% for message in conversation.messages.all %}
+        <div class="p-6 mb-4 flex {% if message.created_by == request.user %}bg-blue-100{% else %}bg-gray-100{% endif %} rounded-xl shadow-2xl">
+            <div class="">
+                <p class="mb-4">
+                    <strong>{{message.created_by.username}}</strong> @ {{message.created_at}}
+                    <p class="text-lg text-indigo-500">{{message.content|linebreaks}}</p>
+                </p>
+            </div>
+        </div>
+        
+    {%  endfor %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="mb-2"><label for="" class="text-xl text-gray-800 font-semibold block">{{field.label_tag}}</label>
+        {{field }}
+        </div>
+        {% endfor %}
+        <input type="submit" value="send"class="text-lg bg-blue-500 hover:bg-blue-700 text-white rounded-xl w-full px-6 py-3" >
+    </form>
+  </div>
+</div>
+{% endblock %}

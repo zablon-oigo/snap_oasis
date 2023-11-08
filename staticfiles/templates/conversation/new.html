@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title%}
+New Conversation
+{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto  bg-gray-200 p-6">
+   <div class="max-w-lg mx-auto bg-white py-4 px-6 rounded-xl shadow-2xl">
+    <h2 class="md:text-5xl text-3xl text-gray-800 font-bold text-center mb-4">New Conversation</h2>
+    <form action="{% url 'conversation:new' item.pk %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="mb-2"><label for="" class="text-2xl font-semibold block">{{field.label_tag}}</label>
+        {{field}}
+        </div>
+        {% endfor %}
+        <div class="flex itmes-center justify-center">
+            <input type="submit" value="send" class="bg-teal-500 hover:bg-teal-700 text-white w-full inline-flex items-center justify-center px-6 py-3 rounded-xl text-lg">
+        </div>
+    </form>
+   </div>
+</div>
+{% endblock %}

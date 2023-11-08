@@ -1,0 +1,100 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %} | Market</title>
+    {% tailwind_css %}
+</head>
+<body class="bg-slate-100 font-mono">
+    <header class="px-6 py-6 relative border-b-2 border-gray-200">
+        <nav class=" flex items-center justify-between">
+            <div class="">
+                <a href="{% url 'market:home' %}" class="text-4xl font-extrabold uppercase bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 to-cyan-500">Snap<span class="border-b-8 pt-2  border-indigo-800 text-sm text-indigo-500 absolute top-5">ETC</span></a>
+            </div>
+            <div class="md:block hidden space-x-6">
+                <a href="{% url 'market:addItem' %}" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Add Item</a>
+                <a href="{% url 'market:search' %}" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Search</a>
+            </div>
+            <button class="md:hidden block" id="Openbtn">
+                {% load static %}
+                <img src="{% static 'image/icon.svg' %}" alt="" class="" id="image">
+            </button>
+            <div class="space-x-4 md:block hidden">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'conversation:inbox' %}" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500 border-2 border-gray-800 px-6 py-3 rounded-xl bg-slate-50">inbox</a>
+                <a href="{% url 'dashboard:index' %}" class="text-lg font-semibold text-white transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500 bg-teal-700 border px-6 py-3 rounded-xl">Dashboard</a>
+
+                <a href="{% url 'users:logout' %}" class="text-lg font-semibold text-white transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500 border px-6 py-3 rounded-lg bg-red-500">Logout</a>
+                {% else %}
+                <a href="{% url 'users:login' %}" class="text-lg font-semibold text-slate-700 px-6 py-3 rounded-xl border border-gray-800 hover:bg-white hover:border-0 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Login</a>
+                <a href="{% url 'users:register' %}" class="px-6 py-3 rounded-xl bg-teal-500 hover:bg-white hover:ring-2 hover:ring-blue-500 hover:text-teal-700 transition-all hover:delay-150 hover:duration-300 hover:-translate-y-2 hover:scale-150  text-white text-lg font-medium">Sign Up</a>
+                {% endif %}
+            </div>
+        </nav>
+        <section class=" hidden absolute top-78 right-0 text-5xl text-white w-full min-h-screen z-10 bg-black origin-top animate-open-menu" id="menu">
+            
+            <div class="flex items-center justify-center">
+                <ul class="space-y-4 my-20">
+                    {% if request.user.is_authenticated %}
+                    <li class=""><a href="">Add Item</a></li>
+                    <li class=""><a href="">Search</a></li>
+                    <li class=""><a href="{% url 'conversation:inbox' %}">Inbox</a></li>
+                    <li class=""><a href="{% url 'dashboard:index' %}" class="">Dashboard</a></li>
+                    <li class="mt-6"><a href="{% url 'users:logout' %}" class="px-6 py-2 border-2  border-white rounded-xl transition-all hover:ease-out hover:delay-200 hover:duration-300 hover:text-red-500">Logout</a></li>
+                    {% else %}
+                    <li class="{% url 'users:login' %}"><a href=""></a>Log in</li>
+                    <li class="{% url 'users:register' %}"><a href=""></a>Sign Up</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>
+    </header>
+    <div class="container mx-auto">
+        {% block content %}
+            {% endblock %}
+        
+    </div>
+    <footer class="bg-slate-800 p-6 text-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex justifiy-between flex-col md:flex-row item-center">
+                <div class="md:w-1/2 w-full mb-4">
+                    <h2 class="text-2xl font-semibold">About Us</h2>
+                    <p class="text-lg">Explore the world of snapback hats - the perfect blend of style and comfort for the modern trendsetter. Discover your perfect snapback today!</p>
+                </div>
+                <div class="md:w-1/2 w-full flex flex-col md:flex-row   md:justify-around justify-start">
+                    <div class="space-y-2.5 flex flex-col mb-4 ">
+                        <a href="" class="text-lg hover:text-teal-500">Shipping & Returns</a>
+                        <a href="" class="text-lg hover:text-teal-500">Store Policy</a>
+                        <a href="" class="text-lg hover:text-teal-500">Payment Methods</a>
+                        <a href="" class="text-lg hover:text-teal-500">Contact</a>
+                        <a href="" class="text-lg hover:text-teal-500">FAQ</a>
+                    </div>
+                    <div class="">
+                      <h2 class="text-2xl mb-1">Address</h2>
+                      <p class="text-sm">Nairobi,Kimathi street</p>
+                      <p class="text-sm">P.O Box 1234-8524</p>
+                      <div class="space-x-4">
+                        <a href="" class=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href="" class=""><i class="fa-brands fa-twitter"></i></a>
+                        <a href="" class=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href="" class=""><i class="fa-brands fa-pinterest"></i></a>
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const imgMenuopen = "{{ img_menu_open }}";
+        const imgCloseMenu = "{{ img_close_menu }}";
+        const heroImage = "{{ bg_menu }}";
+      </script>
+      
+    {% load static %}
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a0e99f8a3c.js" crossorigin="anonymous"></script>
+</body>
+</html>
