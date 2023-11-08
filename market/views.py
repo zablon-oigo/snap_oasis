@@ -1,6 +1,8 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Product,Category
 from django.db.models import Q
+from django.contrib import messages
+from .forms import ProductForm
 from django.templatetags.static import static
 from django.contrib.auth.decorators import login_required
 def home(request):
@@ -37,5 +39,51 @@ def search_items(request):
              'category_id':int(category_id)}
 
     return render(request,'market/browse.html',context)
+
+@login_required
+def add_Item(request):
+    if request.method =='POST':
+        form=ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            item=form.save(commit=False)
+            item.seller=request.user
+            item.save()
+            messages.success(request,'Item added successfully')
+            return redirect(item.get_absolute_url())
+        else:
+            messages.error(request,'Please correct the following error')
+    else:
+        form=ProductForm()
+    return render(request, 'market/add_item.html',{'form':form})
+
+@login_required
+def update_Item(request,pk):
+    item=get_object_or_404(Product,pk=pk,is_sold=False, seller=request.user)
+    if request.method == 'POST':
+        form=ProductForm(request.POST, request.FILES,instance=item)
+        if form.is_valid():
+            updateItem=form.save(commit=False)
+            updateItem.seller=request.user
+            updateItem.save()
+            messages.success(request, 'Update request was successfull')
+            return redirect(updateItem.get_absolute_url())
+        else:
+            messages.error(request, 'Please correct the following error')
+    else:
+        form=ProductForm(instance=item)
+    return render(request, 'market/add_item.html',{'form':form,'pk':pk})
+
+@login_required
+def delete_Item(request,pk):
+    item=get_object_or_404(Product, pk=pk, seller=request.user, is_sold=False)
+    if request.method == 'POST':
+        item.delete()
+        messages.success(request,'The Item was deleted successfully')
+        return redirect('market:home')
+    return render(request, 'market/delete.html', {'item':item})
+
+
+        
+        
 
 

@@ -16,7 +16,17 @@
                 <strong class="text-xl text-gray-800 ">Description:</strong>
                 {{item.description|linebreaks}}
             </p>
-          <a href="{% url 'conversation:new'  item.id %}" class="inline-flex items-center justify-center mt-6 px-6 py-3 text-lg w-full text-white rounded-xl font-semibold bg-teal-500 hover:bg-teal-700">Contact seller</a>
+         <div class="my-6">
+            {% if request.user.is_authenticated and request.user == item.seller %}
+            <div class="">
+                <a href="{% url 'market:updateItem' item.pk %}" class="px-4 py-2 rounded-full bg-blue-500 hover:bg-blue-700 hover:ring-2 hover:ring-white text-white text-lg">update</a>
+                <a href="{% url 'market:deleteItem' item.pk %}" class="px-4 py-2 rounded-full bg-rose-500 hover:bg-rose-700 hover:ring-2 hover:ring-white text-white text-lg">delete</a>
+
+            </div>
+            {% else %}
+            <a href="{% url 'conversation:new'  item.id %}" class="inline-flex items-center justify-center mt-6 px-6 py-3 text-lg w-full text-white rounded-xl font-semibold bg-teal-500 hover:bg-teal-700">Contact seller</a>
+            {% endif %}
+         </div>
         </div>
     </div>
 </div>

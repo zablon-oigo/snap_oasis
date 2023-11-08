@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+Delete-Item 
+{% endblock %}
+{% block content %}
+<div class="container mx-auto">
+    <div class="max-w-xl mx-auto bg-white shadow-2xl my-10 rounded-2xl p-6">
+        <h2 class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-tr from-red-500 to-rose-700 text-center mb-4">Delete Item</h2>
+    <div class="max-auto">
+       <form action="{% url 'market:deleteItem' item.pk %}" method="post">
+        <p class=" mb-6 text-4xl text-gray-800 font-semibold">Are you sure you want to  delete <span class="font-extrabold underline">"{{item.name}}"</span>? </p>
+        <img src="{{item.image.url}}" alt="" class=" rounded-2xl shadow-2xl h-64 mb-6 mx-auto w-full">
+<div class="flex items-center  flex-col md:flex-row justify-between">
+    <input type="submit" value="Delete" class="w-1/2 mx-2 bg-rose-500 px-6 py-4 hover:bg-rose-700 rounded-xl text-white text-xl">
+    <a href="{{item.get_absolute_url}}" class="w-1/2 mx-2 inline-flex items-center justify-center bg-blue-500 px-6 py-4 hover:bg-blue-700 rounded-xl text-white text-xl">Cancel</a>
+</div>
+{% csrf_token %}
+       </form>
+    </div>
+    </div>
+</div>
+{% endblock %}

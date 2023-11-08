@@ -5,14 +5,14 @@ Home
 {% block content %}
 <div class="conatiner mx-auto">
     {% load static %}
-    <section class="px-6 relative text-white"id="hero">
+    <section class="px-6 relative text-white z-0"id="hero">
        <img src="{% static 'image/bg.jfif' %}" alt="" class="h-96 object-cover object-center w-full">
        <div class="absolute top-0 right-5 left-5  bg-black bg-opacity-60 h-full">
         <div class="absolute top-10 left-2 w-full">
             <h2 class="uppercase text-center md:text-8xl text-6xl font-extrabold mb-4">Always be Original</h2>
             <p class="uppercase  text-center font-bold text-2xl mb-4">New arrivals are here</p>
            <div class="flex items-center justify-center">
-              <button class="border-2  border-white px-6 py-3 hover:bg-teal-500 hover:text-whitefont-semibold hover:border-0">Shop Now</button>
+              <button class="border-2  border-white px-6 py-3 hover:bg-teal-500 hover:text-white hover:rounded-xl hover:translate-y-2 hover:scale-125 font-semibold hover:border-0">Shop Now</button>
            </div>
      </div>
        </div>
@@ -25,7 +25,7 @@ Home
                 <div class="shadow-2xl">
                     <a href="{{item.get_absolute_url}}" class="">
                         <div class="">
-                            <img src="{{item.image.url}}" alt="" class="rounded-t-xl w-full h-80 object-center">
+                            <img src="{{item.image.url}}" alt="" class="rounded-t-xl w-full h-64 object-center">
                         </div>
                         <div class="p-6 bg-white rounded-b-2xl">
                             <h2 class="text-2xl font-semibold text-teal-500">{{item.name}}</h2>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if pk %}update-Item {%else %}Add-Item {% endif %}
+{% endblock %}
+{% block content %}
+<div class="container mx-auto">
+    <div class="max-w-md mx-auto bg-white shadow-2xl my-10 rounded-2xl p-6">
+        <h2 class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-tr from-blue-500 to-green-500 text-center">{% if pk %}Update Item {%else %}Add Item {% endif %}</h2>
+    <div class="max-auto">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-2">
+                <label for="" class="text-xl block">{{field.label_tag}}</label>
+                {{field }}
+            </div>
+            {% endfor %}
+            <input type="submit" value="submit" class="my-4 px-6 py-4 rounded-xl bg-blue-500 text-lg w-full hover:bg-blue-700 text-white">
+        </form>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

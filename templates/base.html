@@ -14,7 +14,7 @@
                 <a href="{% url 'market:home' %}" class="text-4xl font-extrabold uppercase bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 to-cyan-500">Snap<span class="border-b-8 pt-2  border-indigo-800 text-sm text-indigo-500 absolute top-5">ETC</span></a>
             </div>
             <div class="md:block hidden space-x-6">
-                <a href="" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Add Item</a>
+                <a href="{% url 'market:addItem' %}" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Add Item</a>
                 <a href="{% url 'market:search' %}" class="text-lg font-semibold text-slate-700 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Search</a>
             </div>
             <button class="md:hidden block" id="Openbtn">
@@ -29,11 +29,11 @@
                 <a href="{% url 'users:logout' %}" class="text-lg font-semibold text-white transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500 border px-6 py-3 rounded-lg bg-red-500">Logout</a>
                 {% else %}
                 <a href="{% url 'users:login' %}" class="text-lg font-semibold text-slate-700 px-6 py-3 rounded-xl border border-gray-800 hover:bg-white hover:border-0 transititon hover:duration-300 hover:delay-200 hover:ease-linear hover:text-blue-500">Login</a>
-                <a href="{% url 'users:register' %}" class="px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-700 text-white text-lg font-medium">Sign Up</a>
+                <a href="{% url 'users:register' %}" class="px-6 py-3 rounded-xl bg-teal-500 hover:bg-white hover:ring-2 hover:ring-blue-500 hover:text-teal-700 transition-all hover:delay-150 hover:duration-300 hover:-translate-y-2 hover:scale-150  text-white text-lg font-medium">Sign Up</a>
                 {% endif %}
             </div>
         </nav>
-        <section class=" hidden absolute top-78 right-0 text-5xl text-white w-full min-h-screen bg-black origin-top animate-open-menu" id="menu">
+        <section class=" hidden absolute top-78 right-0 text-5xl text-white w-full min-h-screen z-10 bg-black origin-top animate-open-menu" id="menu">
             
             <div class="flex items-center justify-center">
                 <ul class="space-y-4 my-20">
